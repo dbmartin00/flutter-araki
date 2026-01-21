@@ -11,13 +11,13 @@ final SplitConfiguration configurationOptions = SplitConfiguration(
     enableDebug: true,
     persistentAttributesEnabled: true,
     streamingEnabled: true,
-    featuresRefreshRate: 5
+    featuresRefreshRate: 5,
 );
 
-final Splitio _split = Splitio(splitApiToken, 'key', configuration: configurationOptions);
-//final Splitio _split = Splitio(SplitApiConfig.apiToken, 'key', configuration: configurationOptions);
+final Splitio _split = Splitio(splitApiToken, 'dmartin-flutter', configuration: configurationOptions);
 
 void main() {
+  print("splitApiToken: $splitApiToken");  
   runApp(const MyApp());
 }
 
@@ -51,11 +51,13 @@ Future<SplitResult> getSplitTreatment() {
     Completer<SplitResult> resultCompleter = Completer();
 
     _split.client(onReady: (client) async {
-      print("client is ready, calling getTreatment");
+      print("onReady!");
+      print("DBM2");
       resultCompleter
         .complete(client.getTreatmentWithConfig('multivariant_demo'));
     }, onReadyFromCache: (client) {
       print("onReadyFromCache!");
+      print("DBM1");
     }, onUpdated: (client) async {
       print("onUpdated!");
       SplitResult result = await client.getTreatmentWithConfig('multivariant_demo');
