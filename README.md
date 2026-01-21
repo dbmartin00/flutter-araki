@@ -1,5 +1,14 @@
 # araki
 
+IMPORTANT
+lib/splitApiToken.dart should be file with contents like this:
+
+```dart
+const String splitApiToken = '<your client-side FME API token>';
+```
+
+You can generate tokens from the FME user interface.
+
 A new Flutter project to show off the Split plugin for feature flags in Flutter.
 
 Araki is the name of the creator of *Jo Jo's Bizarre Adventures*, a sleek bit of manga and anime.
